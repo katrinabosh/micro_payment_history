@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="developer">
+        <createTable tableName="payment" remarks="Платежи">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="person_id" type="uuid" remarks="Участник, запросивший покупку">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock_code" type="varchar(10)" remarks="Код ценной бумаги">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock_count" type="number(10)" remarks="Количество запрашиваемых ценных бумаг">
+                <constraints nullable="false"/>
+            </column>
+            <column name="request_date" type="timestamp" remarks="Дата регистрации запроса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(500)" remarks="Статус"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="developer">
+        <insert tableName="payment">
+            <column name="id">11111111-1111-1111-1111-111111111111</column>
+            <column name="person_id">00000000-0000-0000-0000-000000000000</column>
+            <column name="stock_code">GMK</column>
+            <column name="stock_count">5</column>
+            <column name="request_date">now()</column>
+            <column name="status">В работе</column>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>
